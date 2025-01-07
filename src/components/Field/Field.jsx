@@ -2,8 +2,9 @@ import { Cell } from '../Cell';
 import { generateNaturalSeries } from '../../common/utils/generateNaturalSeries';
 import './Field.scss';
 
-export const Field = ({ fieldConfig }) => {
+export const Field = ({ fieldConfig, selectionState }) => {
   const { id, totalCellCount, requiredCellCount } = fieldConfig;
+  const { selectedNumbers, toggleNumber } = selectionState;
 
   const cellsCount = generateNaturalSeries(totalCellCount);
 
@@ -18,7 +19,12 @@ export const Field = ({ fieldConfig }) => {
       </div>
       <div className="field__cells">
         {cellsCount.map(number => (
-          <Cell key={number} number={number} />
+          <Cell
+            key={number}
+            number={number}
+            isSelected={selectedNumbers.includes(number)}
+            handleCellClick={toggleNumber}
+          />
         ))}
       </div>
     </div>

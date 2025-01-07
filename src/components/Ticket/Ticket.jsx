@@ -1,9 +1,12 @@
 import { ResultButton } from '../ResultButton';
 import { Field } from '../Field';
 import { MagicWand } from '../MagicWand';
+import { useNumberSelection } from '../../common/hooks/useNumberSelection';
 import './Ticket.scss';
 
 export const Ticket = ({ id, fieldsConfig }) => {
+  const [fieldSelectionStates] = useNumberSelection();
+
   return (
     <div className="ticket">
       <div className="ticket-header">
@@ -11,8 +14,12 @@ export const Ticket = ({ id, fieldsConfig }) => {
         <MagicWand />
       </div>
       <div className="ticket__fields">
-        {fieldsConfig.map(fieldConfig => (
-          <Field key={fieldConfig.id} fieldConfig={fieldConfig} />
+        {fieldsConfig.map((fieldConfig, index) => (
+          <Field
+            key={fieldConfig.id}
+            fieldConfig={fieldConfig}
+            selectionState={fieldSelectionStates[index]}
+          />
         ))}
       </div>
       <div className="ticket__result">
