@@ -1,0 +1,33 @@
+body {
+  height: 100%; //TODO: change to 100vh on desktop devices
+  padding: 40px;
+
+  font-family: Roboto, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--color-black);
+
+  background: linear-gradient(
+    var(--color-start-lin-grad),
+    var(--color-end-lin-grad)
+  );
+  background-size: cover;
+  box-sizing: border-box;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-white);
+  border: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
