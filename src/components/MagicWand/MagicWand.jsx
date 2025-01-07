@@ -1,8 +1,8 @@
 import './MagicWand.scss';
 
-export const MagicWand = () => {
+export const MagicWand = ({ handleMagicWandClick }) => {
   return (
-    <button className="btn_magic-wand">
+    <button className="btn_magic-wand" onClick={handleMagicWandClick}>
       <svg
         width="18"
         height="18"
