@@ -13,10 +13,14 @@
     gap: 16px;
   }
 
-  &__result {
+  &__button {
     display: flex;
     justify-content: center;
     padding: 12px 0;
+  }
+
+  &__result {
+    padding-left: 5px;
   }
 }
 

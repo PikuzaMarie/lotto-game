@@ -36,7 +36,9 @@ export const Ticket = ({ id, fieldsConfig, checkIsTicketWon }) => {
         {!isGameOver && <MagicWand handleMagicWandClick={onMagicWandClick} />}
       </div>
       {isGameOver ? (
-        <ResultMessage isTicketWon={isTicketWon} />
+        <div className="ticket__result">
+          <ResultMessage isTicketWon={isTicketWon} />
+        </div>
       ) : (
         <>
           <div className="ticket__fields">
@@ -48,7 +50,7 @@ export const Ticket = ({ id, fieldsConfig, checkIsTicketWon }) => {
               />
             ))}
           </div>
-          <div className="ticket__result">
+          <div className="ticket__button">
             <ResultButton
               msg="Показать результат"
               handleResultClick={onResultClick}
