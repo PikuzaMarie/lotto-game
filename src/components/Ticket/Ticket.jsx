@@ -5,12 +5,13 @@ import { MagicWand } from '../MagicWand';
 import { useNumberSelection } from '../../common/hooks/useNumberSelection';
 import { generateRandomSelection } from '../../features/generateRandomSelection';
 import './Ticket.scss';
+import { ResultMessage } from '../ResultMessage';
 
 export const Ticket = ({ id, fieldsConfig, checkIsTicketWon }) => {
   const [fieldSelectionStates, setSelectionState] = useNumberSelection();
 
-  const [, /*isTicketWon*/ setIsTicketWon] = useState(false);
-  const [, /*isGameOver*/ setIsGameOver] = useState(false);
+  const [isTicketWon, setIsTicketWon] = useState(false);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   const onMagicWandClick = () => {
     const randomSelectionStates = generateRandomSelection(fieldsConfig);
@@ -32,23 +33,29 @@ export const Ticket = ({ id, fieldsConfig, checkIsTicketWon }) => {
     <div className="ticket">
       <div className="ticket-header">
         <h3 className="ticket-header__heading">{`Билет ${id}`}</h3>
-        <MagicWand handleMagicWandClick={onMagicWandClick} />
+        {!isGameOver && <MagicWand handleMagicWandClick={onMagicWandClick} />}
       </div>
-      <div className="ticket__fields">
-        {fieldsConfig.map((fieldConfig, index) => (
-          <Field
-            key={fieldConfig.id}
-            fieldConfig={fieldConfig}
-            selectionState={fieldSelectionStates[index]}
-          />
-        ))}
-      </div>
-      <div className="ticket__result">
-        <ResultButton
-          msg="Показать результат"
-          handleResultClick={onResultClick}
-        />
-      </div>
+      {isGameOver ? (
+        <ResultMessage isTicketWon={isTicketWon} />
+      ) : (
+        <>
+          <div className="ticket__fields">
+            {fieldsConfig.map((fieldConfig, index) => (
+              <Field
+                key={fieldConfig.id}
+                fieldConfig={fieldConfig}
+                selectionState={fieldSelectionStates[index]}
+              />
+            ))}
+          </div>
+          <div className="ticket__result">
+            <ResultButton
+              msg="Показать результат"
+              handleResultClick={onResultClick}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };
