@@ -1,22 +1,33 @@
+import { useState } from 'react';
 import { ResultButton } from '../ResultButton';
 import { Field } from '../Field';
 import { MagicWand } from '../MagicWand';
 import { useNumberSelection } from '../../common/hooks/useNumberSelection';
-import { generateRandomNumbers } from '../../common/utils/generateRandomNumbers';
+import { generateRandomSelection } from '../../features/generateRandomSelection';
 import './Ticket.scss';
 
-export const Ticket = ({ id, fieldsConfig }) => {
+export const Ticket = ({ id, fieldsConfig, checkIsTicketWon }) => {
   const [fieldSelectionStates, setSelectionState] = useNumberSelection();
 
+  const [, /*isTicketWon*/ setIsTicketWon] = useState(false);
+  const [, /*isGameOver*/ setIsGameOver] = useState(false);
+
   const onMagicWandClick = () => {
-    const randomSelectionStates = fieldsConfig.map(fieldConfig =>
-      generateRandomNumbers(
-        fieldConfig.requiredCellCount,
-        fieldConfig.totalCellCount,
-      ),
-    );
+    const randomSelectionStates = generateRandomSelection(fieldsConfig);
     setSelectionState(randomSelectionStates);
   };
+
+  const onResultClick = () => {
+    const winningCombination = generateRandomSelection(fieldsConfig);
+    const userCombination = fieldSelectionStates.map(
+      state => state.selectedNumbers,
+    );
+    const isWon = checkIsTicketWon(userCombination, winningCombination);
+
+    setIsTicketWon(isWon);
+    setIsGameOver(true);
+  };
+
   return (
     <div className="ticket">
       <div className="ticket-header">
@@ -33,7 +44,10 @@ export const Ticket = ({ id, fieldsConfig }) => {
         ))}
       </div>
       <div className="ticket__result">
-        <ResultButton msg="Показать результат" />
+        <ResultButton
+          msg="Показать результат"
+          handleResultClick={onResultClick}
+        />
       </div>
     </div>
   );
