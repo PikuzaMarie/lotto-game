@@ -13,6 +13,10 @@ export const Ticket = ({ id, fieldsConfig, checkIsTicketWon }) => {
   const [isTicketWon, setIsTicketWon] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
 
+  const isSelectionCompleted = fieldSelectionStates.every(
+    fieldState => fieldState.isSelectionCompleted,
+  );
+
   const onMagicWandClick = () => {
     const randomSelectionStates = generateRandomSelection(fieldsConfig);
     setSelectionState(randomSelectionStates);
@@ -54,6 +58,7 @@ export const Ticket = ({ id, fieldsConfig, checkIsTicketWon }) => {
             <ResultButton
               msg="Показать результат"
               handleResultClick={onResultClick}
+              isDisabled={!isSelectionCompleted}
             />
           </div>
         </>

@@ -5,8 +5,12 @@
     padding: 13px 23px;
   }
 
-  &_result:hover {
+  &_result:not(:disabled):hover {
     background-color: var(--color-selected-yellow);
     border: 1px solid var(--color-selected-yellow);
+  }
+
+  &_result:disabled {
+    cursor: not-allowed;
   }
 }
