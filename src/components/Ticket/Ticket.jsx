@@ -4,6 +4,7 @@ import { Field } from '../Field';
 import { MagicWand } from '../MagicWand';
 import { useNumberSelection } from '../../common/hooks/useNumberSelection';
 import { generateRandomSelection } from '../../features/generateRandomSelection';
+import { submitTicket } from '../../services/api';
 import './Ticket.scss';
 import { ResultMessage } from '../ResultMessage';
 
@@ -28,6 +29,17 @@ export const Ticket = ({ id, fieldsConfig, checkIsTicketWon }) => {
       state => state.selectedNumbers,
     );
     const isWon = checkIsTicketWon(userCombination, winningCombination);
+
+    submitTicket(
+      {
+        selectedNumber: {
+          firstField: userCombination[0],
+          secondField: userCombination[1],
+        },
+        isTicketWon: isWon,
+      },
+      id,
+    );
 
     setIsTicketWon(isWon);
     setIsGameOver(true);
