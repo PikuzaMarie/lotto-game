@@ -1,4 +1,7 @@
 export function generateRandomNumbers(amountOfNumbers, maxValue) {
+  if (amountOfNumbers > maxValue) {
+    throw new Error('The amount of numbers cannot exceed the max value');
+  }
   const numbers = new Set();
   const minValue = 1;
 
