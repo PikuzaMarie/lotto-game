@@ -9,7 +9,8 @@ import './Ticket.scss';
 import { ResultMessage } from '../ResultMessage';
 
 export const Ticket = ({ id, fieldsConfig, checkIsTicketWon }) => {
-  const [fieldSelectionStates, setSelectionState] = useNumberSelection();
+  const [fieldSelectionStates, setSelectionState] =
+    useNumberSelection(fieldsConfig);
 
   const [isTicketWon, setIsTicketWon] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);

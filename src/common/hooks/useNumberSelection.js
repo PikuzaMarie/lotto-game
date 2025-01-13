@@ -1,9 +1,6 @@
 import { useState } from 'react';
-import { CONFIG_8_OUT_OF_19 } from '../constants/gameConfigs';
 
-export function useNumberSelection() {
-  const { fieldsConfig } = CONFIG_8_OUT_OF_19;
-
+export function useNumberSelection(fieldsConfig) {
   const [selectedFields, setSelectionState] = useState(
     fieldsConfig.map(() => []),
   );
