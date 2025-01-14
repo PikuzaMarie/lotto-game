@@ -1,0 +1,20 @@
+.cell {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--color-gray);
+  border-radius: 5px;
+
+  &.selected {
+    width: 34px;
+    height: 34px;
+    background-color: var(--color-selected-yellow);
+  }
+
+  &__text {
+    width: 16px;
+    height: 20px;
+    font-size: 14px;
+    color: var(--color-black);
+  }
+}
