@@ -2,15 +2,20 @@
 
 Choose correct amount of numbers in the fields and try your luck!
 
-[TOC]
+## Table of Contents
 
-## Screenshot
+1. [Game UI](#game-ui)
+2. [How to locally run the game](#how-to-locally-run-the-game)
+3. [Technical task](#technical-task)
+4. [Comments to the solution](#comments-to-the-solution)
+
+## Game UI
 
 ![app.png](docs/img/app.png)
 
 ## How to locally run the game
 
-0. Prerequisities:
+#### 0. Prerequisities:
 
 - If you don't have `Node.js` on your PC, install it [here](https://nodejs.org/en/download) (use version **20.18.0** or above)
 
@@ -26,25 +31,27 @@ node -v // Should print "v20.18.0" or above.
 npm -v // Should print "10.9.0" or above.
 ```
 
-1. Clone game repository:
+#### 1. Clone game repository:
 
 ```bash
 git clone https://github.com/PikuzaMarie/lotto-game.git
 ```
 
-2. Go to the directory:
+#### 2. Go to the directory:
 
 ```bash
 cd lotto-game
 ```
 
-3. Install dependencies:
+#### 3. Install dependencies:
 
 ```bash
 npm install
 ```
 
-4. Start the app — it will automatically run in your default browser at http://localhost:3000/
+#### 4. Start the app
+
+it will automatically run in your default browser at http://localhost:3000/
 
 ```bash
 npm run dev
